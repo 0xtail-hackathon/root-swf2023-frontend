@@ -1,9 +1,10 @@
+import Home from "@/pages/Home/Home";
 import { Route, Routes } from "react-router-dom";
 
 const BaseRouter = () => {
     return (
         <Routes>
-            <Route path="/" element={<>landing page</>} />
+            <Route path="/" element={<Home />} />
         </Routes>
     );
 };
