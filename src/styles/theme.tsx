@@ -4,6 +4,7 @@ export const fontWeight = {
     medium: 500,
     semiBold: 600,
     bold: 700,
+    extraBold: 800,
 };
 
 export const color = {
@@ -21,10 +22,6 @@ export const color = {
     error: "#ff6b6b",
 
     bg: "#ddd",
-};
-
-export const heights = {
-    navbar: "3rem",
 };
 
 export const boxShadow = {
@@ -55,22 +52,31 @@ export const layout = {
 };
 
 export const zIndex = {
-    navbar: 1000,
+    navbar: 999,
+    logo: 999,
+    background: -1,
 };
 
-export const width = {
+export const widths = {
     xxs: "480px",
     xs: "600px",
     sm: "768px",
     md: "900px",
     lg: "1024px",
     xl: "1280px",
+
+    logo: "3rem",
+};
+
+export const heights = {
+    navbar: "6rem",
+    footer: "9rem",
 };
 
 export const breakpoint = {
-    xs: `screen and (max-width: ${width.xs})`,
-    sm: `screen and (max-width: ${width.sm})`,
-    md: `screen and (max-width: ${width.md})`,
-    lg: `screen and (max-width: ${width.lg})`,
-    xl: `screen and (max-width: ${width.xl})`,
+    xs: `screen and (max-width: ${widths.xs})`,
+    sm: `screen and (max-width: ${widths.sm})`,
+    md: `screen and (max-width: ${widths.md})`,
+    lg: `screen and (max-width: ${widths.lg})`,
+    xl: `screen and (max-width: ${widths.xl})`,
 };

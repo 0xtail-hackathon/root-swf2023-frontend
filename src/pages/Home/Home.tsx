@@ -1,5 +1,15 @@
+import Footer from "@/components/layouts/Footer/Footer";
+import Header from "@/components/layouts/Header/Header";
+import HeroSection from "@/components/sections/HeroSection/HeroSection";
+
 const Home = () => {
-    return <div></div>;
+    return (
+        <>
+            <Header />
+            <HeroSection />
+            <Footer />
+        </>
+    );
 };
 
 export default Home;

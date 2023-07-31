@@ -6,6 +6,7 @@ declare module "styled-components" {
         boxShadow: typeof theme.boxShadow;
         color: typeof theme.color;
         fontWeight: typeof theme.fontWeight;
+        widths: typeof theme.widths;
         heights: typeof theme.heights;
         layout: typeof theme.layout;
         zIndex: typeof theme.zIndex;
