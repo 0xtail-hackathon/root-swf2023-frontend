@@ -172,4 +172,12 @@ export const NextButton = styled.button`
         background-color: ${({ theme }) => theme.color.light};
         color: ${({ theme }) => theme.color.black};
     }
+
+    &.loading {
+        background-color: ${({ theme }) => theme.color.lightGray};
+        &:hover {
+            cursor: none;
+            background-color: ${({ theme }) => theme.color.lightGray};
+        }
+    }
 `;

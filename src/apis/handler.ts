@@ -30,6 +30,17 @@ export function getCrowdSaleInfo({ heritageName }: GetCrowdSaleInfoParams) {
     });
 }
 
+interface SetCloseCrowdSaleParams {
+    data: { name: string };
+}
+export function closeCrowdSale({ data }: SetCloseCrowdSaleParams) {
+    return serverInstance({
+        method: "post",
+        url: `/crowdsale/close`,
+        data,
+    });
+}
+
 interface GetFundListParams {
     heritageName: string;
 }
@@ -49,7 +60,7 @@ interface SetFundParams {
 }
 export function sendFund({ data }: SetFundParams) {
     return serverInstance({
-        method: "get",
+        method: "post",
         url: `/fund/send`,
         data,
     });

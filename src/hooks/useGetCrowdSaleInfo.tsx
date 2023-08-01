@@ -6,7 +6,7 @@ const useGetCrowdSaleInfo = (
     heritageName: string
 ): UseQueryResult<ApiResponse<CROWD_SALE_INFO>> => {
     return useQuery({
-        queryKey: [KEYS.QUERY_CROWED_SALE_INFO, heritageName],
+        queryKey: [KEYS.QUERY_CROWD_SALE_INFO, heritageName],
         queryFn: () => getCrowdSaleInfo({ heritageName }),
         enabled: !!heritageName,
     });

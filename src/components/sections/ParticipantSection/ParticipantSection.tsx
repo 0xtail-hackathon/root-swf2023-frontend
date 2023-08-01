@@ -17,12 +17,15 @@ import { useRecoilState } from "recoil";
 import { selectedItemState, userInfoState } from "@/recoils";
 import useSendFund from "@/hooks/useSendFund";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Loading from "@/components/common/Loading/Loading";
 const LOGO_IMG = "/images/Logo.svg";
-const FUND_AMOUNT = 10000;
+const FUND_AMOUNT = 100000;
 
 const ParticipantSection = () => {
     const [selectedItem] = useRecoilState(selectedItemState);
     const [userInfo] = useRecoilState(userInfoState);
+    const navigate = useNavigate();
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -39,7 +42,9 @@ const ParticipantSection = () => {
 
     const onClickNextButton = async () => {
         if (!inputRef?.current?.value) return;
-        sendFundMutation.mutate();
+        const result = await sendFundMutation.mutateAsync();
+        console.log(result);
+        navigate("./status");
     };
 
     return (
@@ -83,7 +88,13 @@ const ParticipantSection = () => {
                         </InputInnerBox>
                     </InputOuterBox>
                 </InputWrapper>
-                <NextButton onClick={onClickNextButton}>다음 단계로</NextButton>
+                <NextButton
+                    onClick={onClickNextButton}
+                    className={sendFundMutation.isLoading ? "loading" : ""}
+                    disabled={sendFundMutation.isLoading}
+                >
+                    {sendFundMutation.isLoading ? <Loading /> : "다음 단계로"}
+                </NextButton>
             </ContentWrapper>
         </>
     );

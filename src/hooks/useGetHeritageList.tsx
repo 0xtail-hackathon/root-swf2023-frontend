@@ -4,7 +4,7 @@ import { UseQueryResult, useQuery } from "react-query";
 
 const useGetHeritageList = (): UseQueryResult<ApiResponse<HERITAGE[]>> => {
     return useQuery({
-        queryKey: [KEYS.QUERY_FUND_LIST],
+        queryKey: [KEYS.QUERY_HERITAGE_LIST],
         queryFn: () => getHeritageList(),
     });
 };
