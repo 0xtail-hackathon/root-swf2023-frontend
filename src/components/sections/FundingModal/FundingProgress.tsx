@@ -17,8 +17,8 @@ const FundingProgress: React.FC<FundingProgress> = ({ current, total }) => {
                     <ProgressBar className="filled" progress={progress} />
                 </ProgressBarBox>
                 <Pointer progress={progress} />
-                <Value>{current}</Value>
-                <Value className="total">{`/${total}`}</Value>
+                <Value>{current.toLocaleString()}</Value>
+                <Value className="total">{`/${total.toLocaleString()}`}</Value>
             </ProgressBarContainer>
             {/* <button onClick={increaseProgress}>Increase Progress</button> */}
         </>

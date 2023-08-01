@@ -100,6 +100,12 @@ export const ParticipantsBox = styled.div`
             height: 6rem;
             border-radius: 50%;
             border: 1px solid ${({ theme }) => theme.color.light};
+            transition: 0.3s ease;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+            }
         }
     }
 `;

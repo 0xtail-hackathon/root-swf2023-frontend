@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
 const CLOSE_ICON = "/images/CloseIcon.svg";
 const LOGO_IMG = "/images/Logo.svg";
 const MAP_IMG = "/images/Map_Screenshot.svg";
+const BALANCE = 1000000;
 
 interface FundingModalProps {
     setIsFundingModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -106,7 +107,7 @@ const FundingModal: React.FC<FundingModalProps> = ({
                             <ContentBox>
                                 <h3>Funding 참가</h3>
                                 <FundingButtonBox>
-                                    <h4>현재 보유 금액: 1,000,000원</h4>
+                                    <h4>{`현재 보유 금액: ${BALANCE.toLocaleString()}원`}</h4>
                                     <button
                                         onClick={handleOnClickParticipantButton}
                                     >
