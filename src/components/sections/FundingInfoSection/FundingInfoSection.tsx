@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     DescriptionBox,
     FundingSectionWrapper,
@@ -10,18 +9,38 @@ import {
     ParticipantsBox,
     RightWrapper,
 } from "./FundingInfoSection.styled";
-import { FUNDING_SUCCESS_IMG, HERITAGE_LIST } from "./FundingInfoSection.data";
+import { FUNDING_SUCCESS_IMG } from "./FundingInfoSection.data";
 import { useRecoilState } from "recoil";
-import { participantListState } from "@/recoils";
+import { participantListState, selectedItemState } from "@/recoils";
 import { useNavigate } from "react-router-dom";
+import useGetHeritageList from "@/hooks/useGetHeritageList";
+import Loading from "@/components/common/Loading/Loading";
 
-const FundingSection = () => {
+interface FundingSectionProps {
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const FundingSection: React.FC<FundingSectionProps> = ({ setIsModalOpen }) => {
     const [participantList] = useRecoilState(participantListState);
-    const [heritageList] = useState(HERITAGE_LIST);
+    const [, setSelectedItem] = useRecoilState(selectedItemState);
     const navigate = useNavigate();
+
+    const heritageListResponse = useGetHeritageList();
+
+    if (heritageListResponse.isLoading) return <Loading />;
+    if (heritageListResponse.isError || !heritageListResponse.data?.data[0])
+        return <>Error!</>;
+
+    const heritageList = heritageListResponse.data.data.slice(1, 5);
 
     const handleOnClickSuccessBox = () => {
         navigate("/done");
+    };
+
+    const handleOnClickItemBox = (item: HERITAGE) => {
+        setIsModalOpen(true);
+        setSelectedItem(item);
+        navigate(`/item/${item?.id}`);
     };
 
     return (
@@ -54,7 +73,10 @@ const FundingSection = () => {
             </LeftWrapper>
             <RightWrapper>
                 {heritageList.map((heritage) => (
-                    <HeritageBox key={heritage.id + heritage.name}>
+                    <HeritageBox
+                        key={heritage.id + heritage.name}
+                        onClick={() => handleOnClickItemBox(heritage)}
+                    >
                         <img src={heritage.imgUrl} />
                         <InfoBox>
                             <h3>{`#${heritage.id} ${heritage.name}`}</h3>

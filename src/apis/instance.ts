@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const internalServer = axios.create({
-    baseURL: "http://localhost:3000/api",
+const serverInstance = axios.create({
+    baseURL: "http://13.209.233.160:8080/v1",
 });
 
-internalServer.interceptors.response.use(
+serverInstance.interceptors.response.use(
     (response) => {
         return response.data;
     },
@@ -14,4 +14,4 @@ internalServer.interceptors.response.use(
     }
 );
 
-export { internalServer };
+export { serverInstance };

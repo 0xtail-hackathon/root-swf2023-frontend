@@ -6,7 +6,7 @@ interface FundingTimerProps {
 }
 
 const FundingTimer: React.FC<FundingTimerProps> = ({ expiredDate }) => {
-    const [timeLeft] = useState(expiredDate - Date.now());
+    const [timeLeft] = useState(expiredDate * 1000 - Date.now());
 
     // useEffect(() => {
     //     const interval = setInterval(() => {
@@ -21,12 +21,12 @@ const FundingTimer: React.FC<FundingTimerProps> = ({ expiredDate }) => {
     //     return () => clearInterval(interval);
     // }, [expiredDate]);
 
-    const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30));
+    const months = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 30)) ?? 0;
     const days = Math.floor(
-        (timeLeft % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24)
+        (timeLeft % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 ?? 0)
     );
     const hours = Math.floor(
-        (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60) ?? 0
     );
 
     return (

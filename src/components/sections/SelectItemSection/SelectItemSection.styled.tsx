@@ -8,6 +8,8 @@ export const TopWrapper = styled.div`
 
 export const MainImg = styled.img`
     width: 100%;
+    height: 51rem;
+    object-fit: cover;
 `;
 
 export const TopBox = styled.div`

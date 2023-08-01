@@ -14,9 +14,6 @@ interface UserInfo {
 
 export const userInfoState = atom<UserInfo>({
     key: KEYS.ATOM_USER_INFO,
-    default: {
-        username: "Damon",
-        profileUrl: "/images/Profile_1.svg",
-    },
+    default: {} as UserInfo,
     effects_UNSTABLE: [persistAtom],
 });

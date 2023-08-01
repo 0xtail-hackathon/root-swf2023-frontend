@@ -14,31 +14,38 @@ import {
     TopWrapper,
 } from "./ParticipantSection.styled";
 import { useRecoilState } from "recoil";
-import { selectedItemState } from "@/recoils";
+import { selectedItemState, userInfoState } from "@/recoils";
+import useSendFund from "@/hooks/useSendFund";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 const LOGO_IMG = "/images/Logo.svg";
-const FUND_AMOUNT = 1000000;
+const FUND_AMOUNT = 10000;
 
 const ParticipantSection = () => {
     const [selectedItem] = useRecoilState(selectedItemState);
-    const navigate = useNavigate();
+    const [userInfo] = useRecoilState(userInfoState);
+
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const sendFundMutation = useSendFund({
+        amount: FUND_AMOUNT,
+        userName: userInfo.username,
+        artifactName: selectedItem?.name ?? "unknown",
+    });
 
     const onClickMaxButton = () => {
         if (!inputRef?.current) return;
         inputRef.current.value = String(FUND_AMOUNT);
     };
 
-    const onClickNextButton = () => {
+    const onClickNextButton = async () => {
         if (!inputRef?.current?.value) return;
-        navigate("./status");
-        window.scrollTo(0, 0);
+        sendFundMutation.mutate();
     };
+
     return (
         <>
             <TopWrapper>
-                <MainImg src={selectedItem?.imageUrl} />
+                <MainImg src={selectedItem?.imgUrl} />
                 <TopBox>
                     <LogoImg src={LOGO_IMG} />
                     <RoundTextBox>

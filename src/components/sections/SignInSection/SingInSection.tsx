@@ -12,6 +12,8 @@ import {
 } from "./SignInSection.styled";
 import { userInfoState } from "@/recoils/userInfo.atom";
 import { useNavigate } from "react-router-dom";
+import useCreateWallet from "@/hooks/useCreateWallet";
+import { useEffect } from "react";
 
 const SIGN_IN_ROOT_IMG = "/images/SignInRoot.svg";
 const LOGO_ROOT = "/images/LogoRoot_2.svg";
@@ -19,24 +21,26 @@ const LOGO_KAKAO = "/images/LogoKakao.svg";
 const LOGO_NAVER = "/images/LogoNaver.svg";
 
 const SingInSection = () => {
+    const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+    const createWalletMutation = useCreateWallet({
+        userName: userInfo.username,
+    });
     const navigate = useNavigate();
-    const [, setUserInfo] = useRecoilState(userInfoState);
 
-    const handleOnClickKakao = () => {
+    const handleOnClickLogin = () => {
+        const current = Date.now() % 10000;
         setUserInfo({
-            username: "Damon",
+            username: `Root ${current}`,
             profileUrl: "",
         });
-        navigate("/");
     };
 
-    const handleOnClickNaver = () => {
-        setUserInfo({
-            username: "Damon",
-            profileUrl: "",
-        });
-        navigate("/");
-    };
+    useEffect(() => {
+        if (userInfo.username) {
+            createWalletMutation.mutate();
+            navigate("/");
+        }
+    }, [userInfo.username]);
 
     return (
         <SignInWrapper>
@@ -49,11 +53,11 @@ const SingInSection = () => {
                 </TopBox>
                 <CenterBox>
                     <h2>뿌리 프로젝트 시작하기</h2>
-                    <SignInBox className="kakao" onClick={handleOnClickKakao}>
+                    <SignInBox className="kakao" onClick={handleOnClickLogin}>
                         <img src={LOGO_KAKAO} />
                         <span>카카오 로그인</span>
                     </SignInBox>
-                    <SignInBox className="naver" onClick={handleOnClickNaver}>
+                    <SignInBox className="naver" onClick={handleOnClickLogin}>
                         <img src={LOGO_NAVER} />
                         <span>네이버 로그인</span>
                     </SignInBox>

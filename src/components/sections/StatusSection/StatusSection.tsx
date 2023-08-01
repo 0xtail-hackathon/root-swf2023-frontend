@@ -40,7 +40,7 @@ const StatusSection: React.FC<StatusSectionProps> = ({ isSuccess }) => {
     return (
         <>
             <TopWrapper>
-                <MainImg src={selectedItem?.imageUrl} />
+                <MainImg src={selectedItem?.imgUrl} />
                 <TopBox>
                     <LogoImg src={LOGO_IMG} />
                     <RoundTextBox>

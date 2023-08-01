@@ -18,6 +18,8 @@ import FundingProgress from "./FundingProgress";
 import { useRecoilState } from "recoil";
 import { participantListState, selectedItemState } from "@/recoils";
 import { useNavigate } from "react-router-dom";
+import useGetCrowdSaleInfo from "@/hooks/useGetCrowdSaleInfo";
+import useGetFundList from "@/hooks/useGetFundList";
 const LOGO_IMG = "/images/Logo.svg";
 const MAP_IMG = "/images/Map_Screenshot.svg";
 const BALANCE = 1000000;
@@ -27,6 +29,24 @@ const SelectItemSection = () => {
     const [participantList] = useRecoilState(participantListState);
     const navigate = useNavigate();
 
+    const crowdSaleInfoResponse = useGetCrowdSaleInfo(selectedItem?.name || "");
+    const fundListResponse = useGetFundList(selectedItem?.name || "");
+
+    if (crowdSaleInfoResponse.isLoading || fundListResponse.isLoading) return;
+    if (
+        crowdSaleInfoResponse.isError ||
+        !crowdSaleInfoResponse.data?.data ||
+        fundListResponse.isError ||
+        !fundListResponse.data?.data
+    )
+        return;
+
+    const crowdSaleInfo = crowdSaleInfoResponse.data.data;
+    const fundList = fundListResponse.data.data;
+    const sumFund = fundList
+        .map((fund) => fund.amount)
+        .reduce((prev, current) => prev + current, 0);
+
     const handleOnClickParticipantButton = () => {
         navigate("./participant");
         window.scrollTo(0, 0);
@@ -34,7 +54,7 @@ const SelectItemSection = () => {
     return (
         <>
             <TopWrapper>
-                <MainImg src={selectedItem?.imageUrl} />
+                <MainImg src={selectedItem?.imgUrlReq} />
                 <TopBox>
                     <LogoImg src={LOGO_IMG} />
                     <RoundTextBox>
@@ -63,14 +83,14 @@ const SelectItemSection = () => {
                     <ContentBox>
                         <h3>Funding Timer</h3>
                         <FundingTimer
-                            expiredDate={Number(selectedItem?.expiredDate)}
+                            expiredDate={Number(crowdSaleInfo.expiredDate)}
                         />
                     </ContentBox>
                     <ContentBox>
                         <h3>Funding Progress</h3>
                         <FundingProgress
-                            current={10000000}
-                            total={selectedItem?.value || 1000000}
+                            current={sumFund}
+                            total={Number(crowdSaleInfo.value)}
                         />
                     </ContentBox>
                     <ContentBox>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ARROW_IMG, HERITAGE_1, HERO_IMG, InfoList } from "./HeroSection.data";
+import { ARROW_IMG, HERO_IMG } from "./HeroSection.data";
 import {
     BottomBox,
     ContentBox,
@@ -18,19 +18,28 @@ import {
 import { selectedItemState } from "@/recoils/selectedItem.atom";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
+import useGetHeritageList from "@/hooks/useGetHeritageList";
+import Loading from "@/components/common/Loading/Loading";
 
 interface HeroSectionProps {
     setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ setIsModalOpen }) => {
-    const [selectedItem, setSelectedItem] = useRecoilState(selectedItemState);
+    const [, setSelectedItem] = useRecoilState(selectedItemState);
     const navigate = useNavigate();
+    const heritageListResponse = useGetHeritageList();
+
+    if (heritageListResponse.isLoading) return <Loading />;
+    if (heritageListResponse.isError || !heritageListResponse.data?.data[0])
+        return <>Error!</>;
+
+    const firstItem = heritageListResponse.data.data[0];
 
     const handleOnClick = () => {
         setIsModalOpen(true);
-        setSelectedItem(HERITAGE_1);
-        navigate(`/item/${selectedItem?.id}`);
+        setSelectedItem(firstItem);
+        navigate(`/item/${firstItem?.id}`);
     };
 
     return (
@@ -48,14 +57,26 @@ const HeroSection: React.FC<HeroSectionProps> = ({ setIsModalOpen }) => {
                     />
                 </MiddleBox>
                 <BottomBox>
-                    <Title>#1 국외 유물 환수 프로젝트</Title>
+                    <Title>#{firstItem?.id} 국외 유물 환수 프로젝트</Title>
                     <InfoWrapper>
-                        {InfoList.map((info, index) => (
-                            <InfoBox key={info.subTitle + index}>
-                                <SubTitle>{`${info.subTitle} |`}</SubTitle>
-                                <Description>{info.description}</Description>
-                            </InfoBox>
-                        ))}
+                        <InfoBox>
+                            <SubTitle>국적/시대 |</SubTitle>
+                            <Description>{firstItem?.era}</Description>
+                        </InfoBox>
+                        <InfoBox>
+                            <SubTitle>분류 |</SubTitle>
+                            <Description>{firstItem?.category}</Description>
+                        </InfoBox>
+                        <InfoBox>
+                            <SubTitle>크기 |</SubTitle>
+                            <Description>{firstItem?.size}</Description>
+                        </InfoBox>
+                        <InfoBox>
+                            <SubTitle>소장품번호 |</SubTitle>
+                            <Description>
+                                {firstItem?.collectionNumber}
+                            </Description>
+                        </InfoBox>
                     </InfoWrapper>
                 </BottomBox>
             </ContentBox>

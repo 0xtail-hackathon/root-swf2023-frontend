@@ -12,7 +12,7 @@ const Home = () => {
         <>
             <Header />
             <HeroSection setIsModalOpen={setIsModalOpen} />
-            <FundingInfoSection />
+            <FundingInfoSection setIsModalOpen={setIsModalOpen} />
 
             {isModalOpen && (
                 <Modal

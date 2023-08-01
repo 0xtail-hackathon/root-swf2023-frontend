@@ -4,7 +4,7 @@ export const ARROW_IMG = "/images/ArrowIcon.svg";
 export const HERITAGE_1 = {
     id: "1",
     name: "철제 은입사 화로",
-    imageUrl: "/images/Heritage_rectangle_1.svg",
+    imgUrl: "/images/Heritage_rectangle_1.svg",
     excavationLocation: "경상남도 밀양",
     era: "조선",
     category: "주생활 - 생활용품/가전 - 계절용 - 화로",
