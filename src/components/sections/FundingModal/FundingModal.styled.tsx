@@ -8,7 +8,8 @@ export const FundingModalWrapper = styled.section`
     height: 100%;
     background-color: ${({ theme }) => theme.color.modalBg};
     z-index: ${({ theme }) => theme.zIndex.modal};
-    animation: slideUp 0.3s forwards;
+    transition: 0.5s ease;
+    animation: slideUp 0.5s forwards;
 
     @keyframes slideUp {
         from {

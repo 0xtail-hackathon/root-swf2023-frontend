@@ -56,6 +56,8 @@ const FundingTimer: React.FC<FundingTimerProps> = ({ expiredDate }) => {
 const FundingTimerWrapper = styled.div`
     display: grid;
     grid-template-columns: 4fr 1fr 4fr 1fr 4fr;
+    padding: 1rem;
+    margin: 1rem 0;
 `;
 
 const TextBox = styled.div`
@@ -63,11 +65,22 @@ const TextBox = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     text-align: center;
+
+    gap: 0;
     color: ${({ theme }) => theme.color.black};
 
+    h3 {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: ${({ theme }) => theme.fontWeight.bold};
+        line-height: 1rem;
+    }
+
     h2 {
+        display: inline-block;
         font-size: 4.375rem;
         font-weight: ${({ theme }) => theme.fontWeight.extraBold};
+        line-height: 4.375rem;
     }
 `;
 

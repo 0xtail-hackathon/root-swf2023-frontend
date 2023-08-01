@@ -19,6 +19,7 @@ import {
 } from "./FundingModal.styled";
 import { selectedItemState } from "@/recoils/selectedItem.atom";
 import FundingTimer from "./FundingTimer";
+import FundingProgress from "./FundingProgress";
 
 const CLOSE_ICON = "/images/CloseIcon.svg";
 const LOGO_IMG = "/images/Logo.svg";
@@ -87,6 +88,10 @@ const FundingModal: React.FC<FundingModalProps> = ({
                             </ContentBox>
                             <ContentBox>
                                 <h3>Funding Progress</h3>
+                                <FundingProgress
+                                    current={10000000}
+                                    total={selectedItem?.value || 1000000}
+                                />
                             </ContentBox>
                             <ContentBox>
                                 <h3>Funding 참가</h3>
