@@ -32,6 +32,7 @@ const StatusSection: React.FC<StatusSectionProps> = ({ isSuccess }) => {
     const onClickNextButton = () => {
         if (isSuccess) {
             navigate(`/item/${selectedItem?.id}/generate/nft`);
+            window.scrollTo(0, 0);
         } else {
             navigate("./success");
             window.scrollTo(0, 0);

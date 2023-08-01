@@ -1,1 +1,1 @@
-export { default } from "./StatusSection";
+export { default } from "./CompleteSection";
