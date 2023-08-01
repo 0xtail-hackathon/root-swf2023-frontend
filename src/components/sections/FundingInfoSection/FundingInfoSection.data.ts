@@ -1,31 +1,4 @@
 export const FUNDING_SUCCESS_IMG = "/images/FundingSuccess.svg";
-export const PARTICIPANT_LIST = [
-    {
-        profileImg: "/images/Profile_1.svg",
-        username: "user1",
-    },
-    {
-        profileImg: "/images/Profile_2.svg",
-        username: "user2",
-    },
-    {
-        profileImg: "/images/Profile_3.svg",
-        username: "user3",
-    },
-    {
-        profileImg: "/images/Profile_4.svg",
-        username: "user4",
-    },
-    {
-        profileImg: "/images/Profile_5.svg",
-        username: "user5",
-    },
-    {
-        profileImg: "/images/Profile_6.svg",
-        username: "user6",
-    },
-];
-
 export const HERITAGE_LIST = [
     {
         id: 2,

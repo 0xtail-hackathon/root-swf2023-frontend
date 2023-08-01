@@ -123,17 +123,78 @@ export const MapBox = styled.div`
 `;
 
 export const RightBox = styled.div`
+    display: grid;
+    grid-template-rows: repeat(auto-fill, auto);
     border-radius: 1.875rem;
     background: #f0f0f0;
     padding: 2rem;
+    gap: 1rem;
 `;
 
 export const ContentBox = styled.div`
     color: ${({ theme }) => theme.color.black};
+
     h3 {
         font-size: 1.25rem;
         font-weight: ${({ theme }) => theme.fontWeight.bold};
         line-height: 2.5rem;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+    }
+`;
+
+export const FundingButtonBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 28.125rem;
+    height: 9.875rem;
+    border-radius: 1.875rem;
+    background: #fff;
+    overflow: hidden;
+    margin-bottom: 1rem;
+
+    h4 {
+        display: flex;
+        align-items: center;
+        font-size: 1.25rem;
+        font-weight: ${({ theme }) => theme.fontWeight.regular};
+        color: ${({ theme }) => theme.color.black};
+    }
+
+    button {
+        width: 26rem;
+        height: 4rem;
+        border-radius: 1.875rem;
+        font-size: 1.25rem;
+        color: ${({ theme }) => theme.color.white};
+        font-weight: ${({ theme }) => theme.fontWeight.regular};
+        background-color: ${({ theme }) => theme.color.black};
+
+        &:hover {
+            cursor: pointer;
+            background-color: ${({ theme }) => theme.color.light};
+            color: ${({ theme }) => theme.color.black};
+        }
+    }
+`;
+
+export const ParticipantsBox = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    img {
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%;
+        border: 1px solid ${({ theme }) => theme.color.light};
     }
 `;
 

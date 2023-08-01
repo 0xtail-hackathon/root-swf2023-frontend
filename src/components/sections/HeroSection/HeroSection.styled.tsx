@@ -16,7 +16,7 @@ export const HeroImg = styled.img`
 
 export const ContentBox = styled.div`
     position: absolute;
-    top: 32%;
+    top: 28%;
     width: 100%;
     padding-left: 2rem;
 `;

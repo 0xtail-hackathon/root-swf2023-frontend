@@ -11,7 +11,7 @@ export const HERITAGE_1 = {
     size: "높이 15.8cm, 지름 15.2cm, 몸통지름 16.1cm",
     collectionNumber: "덕수 1485",
     currentLocation: "도쿄국립박물관",
-    value: 100000000000,
+    value: 100000000,
     startDate: "1690873956088",
     expiredDate: "1696057956088",
     description:

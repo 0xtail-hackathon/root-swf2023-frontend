@@ -10,14 +10,12 @@ import {
     ParticipantsBox,
     RightWrapper,
 } from "./FundingInfoSection.styled";
-import {
-    FUNDING_SUCCESS_IMG,
-    HERITAGE_LIST,
-    PARTICIPANT_LIST,
-} from "./FundingInfoSection.data";
+import { FUNDING_SUCCESS_IMG, HERITAGE_LIST } from "./FundingInfoSection.data";
+import { useRecoilState } from "recoil";
+import { participantListState } from "@/recoils";
 
 const FundingSection = () => {
-    const [participantList] = useState(PARTICIPANT_LIST);
+    const [participantList] = useRecoilState(participantListState);
     const [heritageList] = useState(HERITAGE_LIST);
 
     return (
@@ -41,7 +39,7 @@ const FundingSection = () => {
                     <div>
                         {participantList.map((participant) => (
                             <img
-                                src={participant.profileImg}
+                                src={participant.profileUrl}
                                 key={participant.username}
                             />
                         ))}

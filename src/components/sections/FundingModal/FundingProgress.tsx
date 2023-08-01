@@ -7,50 +7,75 @@ interface FundingProgress {
 }
 
 const FundingProgress: React.FC<FundingProgress> = ({ current, total }) => {
-    const [progress, setProgress] = useState(
-        Math.floor((current / total) * 100)
-    );
-
-    const increaseProgress = () => {
-        setProgress((prev) => (prev < 100 ? prev + 10 : 0));
-    };
+    const [progress] = useState((current / total) * 100);
 
     return (
-        <div>
+        <>
             <ProgressBarContainer>
-                <ProgressBar progress={progress} />
+                <ProgressBarBox>
+                    <ProgressBar progress={progress} />
+                    <ProgressBar className="filled" progress={progress} />
+                </ProgressBarBox>
                 <Pointer progress={progress} />
+                <Value>{current}</Value>
+                <Value className="total">{`/${total}`}</Value>
             </ProgressBarContainer>
-            <button onClick={increaseProgress}>Increase Progress</button>
-        </div>
+            {/* <button onClick={increaseProgress}>Increase Progress</button> */}
+        </>
     );
 };
 
 const ProgressBarContainer = styled.div`
     width: 100%;
-    height: 20px;
-    background-color: #f3f3f3;
+    height: 100%;
     border-radius: 10px;
     position: relative;
 `;
 
+const ProgressBarBox = styled.div`
+    position: relative;
+    width: 100%;
+    height: 1rem;
+    margin-top: 1rem;
+`;
+
 const ProgressBar = styled.div<{ progress: number }>`
+    position: relative;
     height: 100%;
-    width: ${({ progress }) => progress}%;
-    background-color: #6c6;
+    width: 100%;
+    background: #d9d9d9;
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
+
+    &.filled {
+        position: absolute;
+        top: 0;
+        width: ${({ progress }) => progress}%;
+        background-color: black;
+    }
 `;
 
 const Pointer = styled.div<{ progress: number }>`
     position: absolute;
-    top: -10px;
-    left: ${({ progress }) => progress}%;
-    width: 20px;
-    height: 20px;
-    background-color: #f00;
-    border-radius: 50%;
-    transform: translateX(-50%);
+    top: -0.5rem;
+    width: 0;
+    height: 0;
+    border-left: 0.4rem solid transparent;
+    border-right: 0.4rem solid transparent;
+    border-top: 0.6rem solid black;
+    display: inline-block;
+    left: calc(${({ progress }) => progress}% - 0.4rem);
+`;
+
+const Value = styled.h2`
+    color: ${({ theme }) => theme.color.black};
+    font-size: 3.125rem;
+    font-weight: ${({ theme }) => theme.fontWeight.extraBold};
+    text-align: right;
+
+    &.total {
+        color: #bcbcbc;
+    }
 `;
 
 export default FundingProgress;

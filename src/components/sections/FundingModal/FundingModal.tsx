@@ -16,10 +16,14 @@ import {
     MapBox,
     PreventOverlapBox,
     ContentBox,
+    FundingButtonBox,
+    ParticipantsBox,
 } from "./FundingModal.styled";
 import { selectedItemState } from "@/recoils/selectedItem.atom";
 import FundingTimer from "./FundingTimer";
 import FundingProgress from "./FundingProgress";
+import { participantListState } from "@/recoils";
+import { useNavigate } from "react-router-dom";
 
 const CLOSE_ICON = "/images/CloseIcon.svg";
 const LOGO_IMG = "/images/Logo.svg";
@@ -33,9 +37,15 @@ const FundingModal: React.FC<FundingModalProps> = ({
     setIsFundingModalOpen,
 }) => {
     const [selectedItem] = useRecoilState(selectedItemState);
+    const [participantList] = useRecoilState(participantListState);
+    const navigate = useNavigate();
 
     const handleOnClickCloseButton = () => {
         setIsFundingModalOpen(false);
+    };
+
+    const handleOnClickParticipantButton = () => {
+        navigate("/participant");
     };
 
     return (
@@ -95,9 +105,31 @@ const FundingModal: React.FC<FundingModalProps> = ({
                             </ContentBox>
                             <ContentBox>
                                 <h3>Funding 참가</h3>
+                                <FundingButtonBox>
+                                    <h4>현재 보유 금액: 1,000,000원</h4>
+                                    <button
+                                        onClick={handleOnClickParticipantButton}
+                                    >
+                                        해당 유물 환수에 참가
+                                    </button>
+                                </FundingButtonBox>
+                                <span>
+                                    *이 금액은 펀딩 실패 혹은 경매 낙찰이
+                                    실패되면 다시 전액 환불됩니다.
+                                </span>
                             </ContentBox>
                             <ContentBox>
                                 <h3>펀딩 참여자</h3>
+                                <ParticipantsBox>
+                                    {participantList
+                                        .slice(0, 4)
+                                        .map((participant) => (
+                                            <img
+                                                src={participant.profileUrl}
+                                                key={participant.username}
+                                            />
+                                        ))}
+                                </ParticipantsBox>
                             </ContentBox>
                         </RightBox>
                     </ContentWrapper>
