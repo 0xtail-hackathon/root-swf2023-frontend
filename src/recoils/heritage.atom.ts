@@ -13,8 +13,8 @@ const defaultValue: HERITAGE[] = [
         collectionNumber: "덕수 1485",
         currentLocation: "도쿄국립박물관",
         value: 100000000000,
-        startDate: "",
-        expiredDate: "",
+        startDate: "1690873956088",
+        expiredDate: "1696057956088",
     },
     {
         id: "2",

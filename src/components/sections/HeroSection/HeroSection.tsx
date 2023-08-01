@@ -1,4 +1,5 @@
-import { ARROW_IMG, HERO_IMG, InfoList } from "./HeroSection.data";
+import React from "react";
+import { ARROW_IMG, HERITAGE_1, HERO_IMG, InfoList } from "./HeroSection.data";
 import {
     BottomBox,
     ContentBox,
@@ -14,8 +15,21 @@ import {
     MiddleBox,
     ArrowIconImg,
 } from "./HeroSection.styled";
+import { selectedItemState } from "@/recoils/selectedItem.atom";
+import { useRecoilState } from "recoil";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+    setIsFundingModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ setIsFundingModalOpen }) => {
+    const [, setSelectedItem] = useRecoilState(selectedItemState);
+
+    const handleOnClick = () => {
+        setIsFundingModalOpen(true);
+        setSelectedItem(HERITAGE_1);
+    };
+
     return (
         <HeroSectionWrapper>
             <HeroImg src={HERO_IMG} />
@@ -24,7 +38,11 @@ const HeroSection = () => {
                 <LocationBox>도쿄국립박물관 소재</LocationBox>
                 <MiddleBox>
                     <Name>철제 은입사 화로</Name>
-                    <ArrowIconImg src={ARROW_IMG} className="arrow-img" />
+                    <ArrowIconImg
+                        src={ARROW_IMG}
+                        className="arrow-img"
+                        onClick={handleOnClick}
+                    />
                 </MiddleBox>
                 <BottomBox>
                     <Title>#1 국외 유물 환수 프로젝트</Title>

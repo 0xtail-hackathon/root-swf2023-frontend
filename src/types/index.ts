@@ -20,5 +20,6 @@ declare global {
         value?: number;
         startDate?: string;
         expiredDate?: string;
+        description?: string;
     }
 }

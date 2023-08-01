@@ -12,6 +12,7 @@ export const FooterWrapper = styled.footer`
     height: ${({ theme }) => theme.heights.footer};
     padding: 4rem;
     background: ${({ theme }) => theme.color.black};
+    z-index: ${({ theme }) => theme.zIndex.footer};
 `;
 
 // Left Box

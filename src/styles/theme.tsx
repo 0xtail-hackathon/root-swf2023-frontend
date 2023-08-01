@@ -23,6 +23,7 @@ export const color = {
     error: "#ff6b6b",
 
     bg: "#f5f6f6",
+    modalBg: "rgba(0, 0, 0, 0.81)",
 };
 
 export const boxShadow = {
@@ -56,6 +57,7 @@ export const layout = {
 export const zIndex = {
     background: -1,
     navbar: 900,
+    footer: 998,
     logo: 901,
     modal: 999,
 };
