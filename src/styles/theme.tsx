@@ -12,8 +12,9 @@ export const color = {
     white: "#fff",
 
     dark: "#333",
-    lightDark: "#707070",
-    light: "#eee",
+    darkGray: "#707070",
+    lightGray: "#b9b9b9",
+    light: "#DEDEDE",
 
     primary: "rgb(19, 102, 255)",
     secondary: "#B37A00",
@@ -21,7 +22,7 @@ export const color = {
     success: "#3e8e41",
     error: "#ff6b6b",
 
-    bg: "#ddd",
+    bg: "#f5f6f6",
 };
 
 export const boxShadow = {
@@ -69,7 +70,7 @@ export const widths = {
 };
 
 export const heights = {
-    navbar: "6rem",
+    navbar: "7rem",
     footer: "9rem",
 };
 

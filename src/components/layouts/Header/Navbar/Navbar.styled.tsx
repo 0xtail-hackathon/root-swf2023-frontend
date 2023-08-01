@@ -36,19 +36,34 @@ export const MenuButton = styled.button`
     font-size: 1.25rem;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     padding: 0 1.5rem;
+    transition: 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        background: ${({ theme }) => theme.color.light};
+    }
 
     &.active {
         background-color: ${({ theme }) => theme.color.black};
         color: ${({ theme }) => theme.color.white};
+        &:hover {
+            background: ${({ theme }) => theme.color.dark};
+        }
     }
 `;
 
 export const SignButton = styled.button`
-    width: 11rem;
     height: 3.69rem;
     border-radius: 1.84rem;
     background: ${({ theme }) => theme.color.black};
     color: ${({ theme }) => theme.color.white};
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     font-size: 1.25rem;
+    transition: 0.2s ease;
+    padding: 0 1.5rem;
+
+    &:hover {
+        cursor: pointer;
+        background: ${({ theme }) => theme.color.dark};
+    }
 `;

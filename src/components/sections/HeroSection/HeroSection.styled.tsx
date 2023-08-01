@@ -46,6 +46,7 @@ export const ArrowIconImg = styled.img`
     height: 3.6875rem;
     margin-bottom: 3rem;
     border-radius: 50%;
+    transition: 0.3s ease;
 
     &:hover {
         cursor: pointer;
