@@ -77,7 +77,7 @@ const ParticipantSection = () => {
                             <input
                                 type="number"
                                 ref={inputRef}
-                                placeholder="최소 참가 금액 : 50,000원"
+                                placeholder="최소 참가 금액 : 10,000원"
                             />
                             <button onClick={onClickMaxButton}>Max</button>
                         </InputInnerBox>

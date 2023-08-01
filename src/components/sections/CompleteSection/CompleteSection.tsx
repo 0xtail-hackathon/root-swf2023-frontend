@@ -1,5 +1,4 @@
 import {
-    BottomBox,
     ContentBox,
     ContentWrapper,
     Line,
@@ -9,33 +8,24 @@ import {
     RoundTextBox,
     StatusBox,
     StatusWrapper,
-    TagBox,
     TopBox,
     TopWrapper,
-} from "./StatusSection.styled";
+} from "./CompleteSection.styled";
 import { useRecoilState } from "recoil";
 import { selectedItemState } from "@/recoils";
 
 import { useNavigate } from "react-router-dom";
 const LOGO_IMG = "/images/Logo.svg";
-const SOTHEBYS_IMG = "/images/Sothebys.svg";
+const HASH =
+    "0x8975ab175c722b24875a3d2c8f5f2ded136f8c620696a82955e7e8f004c3be1e";
+const EXPLORER_URL = `https://cronos.org/explorer/testnet3/tx/${HASH}`;
 
-interface StatusSectionProps {
-    isSuccess?: boolean;
-}
-
-const StatusSection: React.FC<StatusSectionProps> = ({ isSuccess }) => {
+const CompleteSection = () => {
     const [selectedItem] = useRecoilState(selectedItemState);
-    const tagDisplay = isSuccess ? "경매 성공" : "경매 입찰중";
     const navigate = useNavigate();
 
     const onClickNextButton = () => {
-        if (isSuccess) {
-            navigate(`/item/${selectedItem?.id}/generate/nft`);
-        } else {
-            navigate("./success");
-            window.scrollTo(0, 0);
-        }
+        navigate("/mypage");
     };
     return (
         <>
@@ -56,25 +46,19 @@ const StatusSection: React.FC<StatusSectionProps> = ({ isSuccess }) => {
                         참가 금액 <br /> 설정
                     </StatusBox>
                     <Line className="solid" />
-                    <StatusBox className="current-status">
+                    <StatusBox className="prev-status">
                         유물 경매 <br /> 결과 확인
                     </StatusBox>
                     <Line />
-                    <StatusBox>
+                    <StatusBox className="current-status">
                         참가 증서 수령 <br /> (NFT)
                     </StatusBox>
                 </StatusWrapper>
                 <ContentBox>
-                    <img src={SOTHEBYS_IMG} />
-                    <h3>{`경매 ID. D32k_456 | ${
-                        selectedItem?.name ?? "알수없음"
-                    }`}</h3>
-                    <BottomBox>
-                        <h2>Sothebys 경매</h2>
-                        <TagBox className={isSuccess ? "success" : ""}>
-                            {tagDisplay}
-                        </TagBox>
-                    </BottomBox>
+                    <img src={selectedItem?.imgUrl} />
+                    <a href={EXPLORER_URL} target="_blank">
+                        {HASH}
+                    </a>
                 </ContentBox>
                 <NextButton onClick={onClickNextButton}>다음 단계로</NextButton>
             </ContentWrapper>
@@ -82,4 +66,4 @@ const StatusSection: React.FC<StatusSectionProps> = ({ isSuccess }) => {
     );
 };
 
-export default StatusSection;
+export default CompleteSection;

@@ -7,6 +7,7 @@ import ParticipantSection from "../sections/ParticipantSection/ParticipantSectio
 import StatusSection from "../sections/StatusSection/StatusSection";
 import Done from "@/pages/Done/Done";
 import MyPage from "@/pages/Mypage/MyPage";
+import CompleteSection from "../sections/CompleteSection/CompleteSection";
 
 const BaseRouter = () => {
     return (
@@ -27,7 +28,7 @@ const BaseRouter = () => {
                 />
                 <Route
                     path="/item/:itemId/generate/nft"
-                    element={<ParticipantSection />}
+                    element={<CompleteSection />}
                 />
             </Route>
             <Route path="/sign-in" element={<SignIn />} />

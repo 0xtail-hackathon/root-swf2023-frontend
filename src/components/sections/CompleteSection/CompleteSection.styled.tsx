@@ -24,7 +24,6 @@ export const TopBox = styled.div`
 
     h1 {
         display: inline-block;
-        width: 100%;
         position: absolute;
         top: 5rem;
         left: 6rem;
@@ -78,6 +77,11 @@ export const StatusBox = styled.div`
     text-align: center;
     color: ${({ theme }) => theme.color.black};
 
+    &.prev-status {
+        color: ${({ theme }) => theme.color.white};
+        background: ${({ theme }) => theme.color.darkGray};
+    }
+
     &.current-status {
         color: ${({ theme }) => theme.color.white};
         background: ${({ theme }) => theme.color.black};
@@ -88,69 +92,25 @@ export const Line = styled.div`
     width: 4.25rem;
     height: 0rem;
     border: 1px dashed black;
+
+    &.solid {
+        border: 1px solid black;
+    }
 `;
 
-export const InputWrapper = styled.div`
+export const ContentBox = styled.div`
     display: flex;
     flex-direction: column;
-
-    gap: 1rem;
-    width: 45rem;
-    h4 {
-        text-align: right;
-        color: #000;
-        font-size: 1.25rem;
-        font-weight: 300;
-    }
-`;
-
-export const InputOuterBox = styled.div`
-    display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 1rem;
-    width: 100%;
-
-    h3 {
-        color: #000;
-        font-size: 1.25rem;
-        font-weight: 600;
+    img {
+        width: 32.5rem;
+        height: 40.875rem;
     }
-`;
-
-export const InputInnerBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: 1px solid black;
-    flex: 1;
-    height: 3.625rem;
-    padding: 0.5rem;
-    gap: 1rem;
-
-    input {
-        width: 100%;
-        outline: none;
-        border: none;
-        font-size: 1.25rem;
-    }
-
-    button {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: black;
-        color: white;
-        font-size: 1.25rem;
-        height: 2.5rem;
-        padding: 1rem;
-        border-radius: 1.875rem;
-
-        &:hover {
-            cursor: pointer;
-            background: ${({ theme }) => theme.color.lightGray};
-            color: black;
-        }
+    a {
+        font-size: 1.2rem;
+        color: blue;
+        text-decoration: underline;
     }
 `;
 
