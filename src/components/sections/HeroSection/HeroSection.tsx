@@ -17,17 +17,20 @@ import {
 } from "./HeroSection.styled";
 import { selectedItemState } from "@/recoils/selectedItem.atom";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 interface HeroSectionProps {
-    setIsFundingModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ setIsFundingModalOpen }) => {
-    const [, setSelectedItem] = useRecoilState(selectedItemState);
+const HeroSection: React.FC<HeroSectionProps> = ({ setIsModalOpen }) => {
+    const [selectedItem, setSelectedItem] = useRecoilState(selectedItemState);
+    const navigate = useNavigate();
 
     const handleOnClick = () => {
-        setIsFundingModalOpen(true);
+        setIsModalOpen(true);
         setSelectedItem(HERITAGE_1);
+        navigate(`/item/${selectedItem?.id}`);
     };
 
     return (

@@ -1,21 +1,28 @@
 import Footer from "@/components/layouts/Footer/Footer";
 import Header from "@/components/layouts/Header/Header";
 import FundingInfoSection from "@/components/sections/FundingInfoSection/FundingInfoSection";
-import FundingModal from "@/components/sections/FundingModal/FundingModal";
+import Modal from "@/components/common/Modal/Modal";
 import HeroSection from "@/components/sections/HeroSection/HeroSection";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
-    const [isFundingModalOpen, setIsFundingModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <>
             <Header />
-            <HeroSection setIsFundingModalOpen={setIsFundingModalOpen} />
+            <HeroSection setIsModalOpen={setIsModalOpen} />
             <FundingInfoSection />
             <Footer />
-            {isFundingModalOpen && (
-                <FundingModal setIsFundingModalOpen={setIsFundingModalOpen} />
+
+            {isModalOpen && (
+                <Modal
+                    setIsModalOpen={setIsModalOpen}
+                    isModalOpen={isModalOpen}
+                >
+                    <Outlet />
+                </Modal>
             )}
         </>
     );

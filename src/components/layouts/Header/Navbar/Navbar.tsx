@@ -20,6 +20,9 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const handleOnClickMenuButton = (menu: string) => {
+        if (menu === "Home") {
+            navigate("/");
+        }
         setActiveMenu(menu);
     };
 
