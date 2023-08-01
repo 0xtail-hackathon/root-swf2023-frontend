@@ -42,6 +42,7 @@ export const SocialLink = styled.a`
     border-radius: 0.25rem;
 
     &:hover {
+        cursor: pointer;
         background: ${({ theme }) => theme.color.bg};
         color: ${({ theme }) => theme.color.black};
     }
@@ -50,6 +51,7 @@ export const SocialLink = styled.a`
 export const InfoBox = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const Info = styled.span`
@@ -62,4 +64,5 @@ export const PreventOverlapBox = styled.div`
     position: relative;
     width: 100%;
     height: ${({ theme }) => theme.heights.footer};
+    z-index: ${({ theme }) => theme.zIndex.background};
 `;

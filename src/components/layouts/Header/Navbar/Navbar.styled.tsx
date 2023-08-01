@@ -29,41 +29,80 @@ export const MenuBox = styled.div`
     gap: 0.5rem;
 `;
 
-export const MenuButton = styled.button`
+export const Button = styled.button`
     border-radius: 1.84rem;
-    height: 3.6875rem;
+    height: 3.69rem;
     background-color: transparent;
+    color: ${({ theme }) => theme.color.black};
     font-size: 1.25rem;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     padding: 0 1.5rem;
     transition: 0.3s ease;
 
-    &:hover {
-        cursor: pointer;
-        background: ${({ theme }) => theme.color.light};
+    &.main-menu-button {
+        &:hover {
+            cursor: pointer;
+            background: ${({ theme }) => theme.color.light};
+        }
+
+        &.active {
+            background-color: ${({ theme }) => theme.color.black};
+            color: ${({ theme }) => theme.color.white};
+            &:hover {
+                background: ${({ theme }) => theme.color.dark};
+            }
+        }
     }
 
-    &.active {
+    &.user-button {
+        position: absolute;
+        left: calc(100% - 14rem);
+        /* transform: translateX(50%); */
+        width: 13rem;
         background-color: ${({ theme }) => theme.color.black};
         color: ${({ theme }) => theme.color.white};
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-all;
+
         &:hover {
+            cursor: pointer;
             background: ${({ theme }) => theme.color.dark};
+        }
+
+        &.user-menu-open {
+            /* background: ${({ theme }) => theme.color.lightGray};
+            color: ${({ theme }) => theme.color.black}; */
+        }
+    }
+
+    &.user-menu-button {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+
+        &:hover {
+            cursor: pointer;
+            background: ${({ theme }) => theme.color.lightGray};
         }
     }
 `;
 
-export const SignButton = styled.button`
-    height: 3.69rem;
-    border-radius: 1.84rem;
-    background: ${({ theme }) => theme.color.black};
-    color: ${({ theme }) => theme.color.white};
-    font-weight: ${({ theme }) => theme.fontWeight.regular};
-    font-size: 1.25rem;
-    transition: 0.2s ease;
-    padding: 0 1.5rem;
-
-    &:hover {
-        cursor: pointer;
-        background: ${({ theme }) => theme.color.dark};
-    }
+export const UserMenu = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: ${({ theme }) => theme.heights.navbar};
+    left: calc(100% - 14rem);
+    width: 12.9375rem;
+    height: 8.0625rem;
+    z-index: ${({ theme }) => theme.zIndex.modal};
+    border-radius: 1.1875rem;
+    background: ${({ theme }) => theme.color.white};
+    box-shadow: ${({ theme }) => theme.boxShadow.style2};
+    overflow: hidden;
+    transition: 0.3s ease;
 `;

@@ -1,38 +1,74 @@
-import { useState } from "react";
-import { MenuBox, MenuButton, NavWrapper, SignButton } from "./Navbar.styled";
+import { useMemo, useState } from "react";
+import { MenuBox, Button, NavWrapper, UserMenu } from "./Navbar.styled";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "@/recoils/userInfo.atom";
 
 const MENUS = ["Home", "About", "How it works"];
 
 const Navbar = () => {
-    const [displayButton] = useState("Sign up | Login");
+    const [userInfo, setUserInfo] = useRecoilState(userInfoState);
     const [activeMenu, setActiveMenu] = useState("Home");
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const displayButton = useMemo(() => {
+        if (!userInfo.username) setIsUserMenuOpen(false);
+        return userInfo.username
+            ? `Hi, ${userInfo.username}`
+            : "Sign up | Login";
+    }, [userInfo.username]);
+
     const navigate = useNavigate();
 
-    const handleOnClickMenu = (menu: string) => {
+    const handleOnClickMenuButton = (menu: string) => {
         setActiveMenu(menu);
     };
 
-    const handleOnClickSignIn = () => {
-        navigate("/sign-in");
+    const handleOnClickUserButton = () => {
+        if (!userInfo?.username) navigate("/sign-in");
+        setIsUserMenuOpen((prev) => !prev);
+    };
+
+    const handleOnClickLogoutButton = () => {
+        setUserInfo({
+            username: "",
+            profileUrl: "",
+        });
     };
 
     return (
         <NavWrapper>
             <MenuBox>
                 {MENUS.map((menu, index) => (
-                    <MenuButton
-                        className={menu === activeMenu ? "active" : ""}
-                        onClick={() => handleOnClickMenu(menu)}
+                    <Button
+                        className={`main-menu-button ${
+                            menu === activeMenu ? "active" : ""
+                        }`}
+                        onClick={() => handleOnClickMenuButton(menu)}
                         key={index + menu}
                     >
                         {menu}
-                    </MenuButton>
+                    </Button>
                 ))}
             </MenuBox>
-            <SignButton onClick={handleOnClickSignIn}>
+            <Button
+                className={`user-button ${
+                    isUserMenuOpen ? "user-menu-open" : ""
+                }`}
+                onClick={handleOnClickUserButton}
+            >
                 {displayButton}
-            </SignButton>
+            </Button>
+            {isUserMenuOpen && (
+                <UserMenu>
+                    <Button className="user-menu-button">My Page</Button>
+                    <Button
+                        className="user-menu-button"
+                        onClick={handleOnClickLogoutButton}
+                    >
+                        Log Out
+                    </Button>
+                </UserMenu>
+            )}
         </NavWrapper>
     );
 };

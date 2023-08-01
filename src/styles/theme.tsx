@@ -27,7 +27,8 @@ export const color = {
 
 export const boxShadow = {
     style1: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-    style2: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
+    style2: "0px 4px 12px 3px rgba(0, 0, 0, 0.25)",
+    style3: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
 };
 
 export const layout = {
@@ -53,9 +54,10 @@ export const layout = {
 };
 
 export const zIndex = {
-    navbar: 999,
-    logo: 999,
     background: -1,
+    navbar: 900,
+    logo: 901,
+    modal: 999,
 };
 
 export const widths = {

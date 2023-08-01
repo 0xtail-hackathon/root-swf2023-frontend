@@ -33,6 +33,13 @@ export const FundingSuccessBox = styled.div`
         height: 100%;
         object-fit: cover;
         z-index: ${({ theme }) => theme.zIndex.background};
+        transition: 0.5s ease;
+    }
+    &:hover {
+        cursor: pointer;
+        img {
+            transform: scale(1.1);
+        }
     }
 `;
 
@@ -113,6 +120,13 @@ export const HeritageBox = styled.div`
         width: 7.625rem;
         height: 7.625rem;
         border-radius: 1.5625rem;
+        transition: 0.3s ease;
+    }
+    &:hover {
+        cursor: pointer;
+        img {
+            transform: scale(1.1);
+        }
     }
 `;
 

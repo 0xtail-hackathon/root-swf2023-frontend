@@ -9,12 +9,12 @@ import {
     LeftWrapper,
     ParticipantsBox,
     RightWrapper,
-} from "./FundingSection.styled";
+} from "./FundingInfoSection.styled";
 import {
     FUNDING_SUCCESS_IMG,
     HERITAGE_LIST,
     PARTICIPANT_LIST,
-} from "./FundingSection.data";
+} from "./FundingInfoSection.data";
 
 const FundingSection = () => {
     const [participantList] = useState(PARTICIPANT_LIST);
