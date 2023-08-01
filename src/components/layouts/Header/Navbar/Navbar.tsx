@@ -31,6 +31,9 @@ const Navbar = () => {
         setIsUserMenuOpen((prev) => !prev);
     };
 
+    const handleOnClickMyPageButton = () => {
+        navigate("/mypage");
+    };
     const handleOnClickLogoutButton = () => {
         setUserInfo({
             username: "",
@@ -63,7 +66,12 @@ const Navbar = () => {
             </Button>
             {isUserMenuOpen && (
                 <UserMenu>
-                    <Button className="user-menu-button">My Page</Button>
+                    <Button
+                        className="user-menu-button"
+                        onClick={handleOnClickMyPageButton}
+                    >
+                        My Page
+                    </Button>
                     <Button
                         className="user-menu-button"
                         onClick={handleOnClickLogoutButton}

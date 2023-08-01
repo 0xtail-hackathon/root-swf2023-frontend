@@ -5,6 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import SelectItemSection from "../sections/SelectItemSection/";
 import ParticipantSection from "../sections/ParticipantSection/ParticipantSection";
 import StatusSection from "../sections/StatusSection/StatusSection";
+import Done from "@/pages/Done/Done";
+import MyPage from "@/pages/Mypage/MyPage";
 
 const BaseRouter = () => {
     return (
@@ -29,6 +31,8 @@ const BaseRouter = () => {
                 />
             </Route>
             <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/done" element={<Done />} />
+            <Route path="/mypage" element={<MyPage />} />
             <Route path="/test" element={<Test />} />
         </Routes>
     );

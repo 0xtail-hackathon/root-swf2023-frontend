@@ -13,15 +13,21 @@ import {
 import { FUNDING_SUCCESS_IMG, HERITAGE_LIST } from "./FundingInfoSection.data";
 import { useRecoilState } from "recoil";
 import { participantListState } from "@/recoils";
+import { useNavigate } from "react-router-dom";
 
 const FundingSection = () => {
     const [participantList] = useRecoilState(participantListState);
     const [heritageList] = useState(HERITAGE_LIST);
+    const navigate = useNavigate();
+
+    const handleOnClickSuccessBox = () => {
+        navigate("/done");
+    };
 
     return (
         <FundingSectionWrapper>
             <LeftWrapper>
-                <FundingSuccessBox>
+                <FundingSuccessBox onClick={handleOnClickSuccessBox}>
                     <img src={FUNDING_SUCCESS_IMG} />
                     <FundingSuccessTextBox>
                         <div>

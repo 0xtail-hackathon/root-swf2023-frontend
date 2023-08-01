@@ -30,8 +30,12 @@ const StatusSection: React.FC<StatusSectionProps> = ({ isSuccess }) => {
     const navigate = useNavigate();
 
     const onClickNextButton = () => {
-        navigate("./success");
-        window.scrollTo(0, 0);
+        if (isSuccess) {
+            navigate("/mypage");
+        } else {
+            navigate("./success");
+            window.scrollTo(0, 0);
+        }
     };
     return (
         <>
